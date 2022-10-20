@@ -8,8 +8,8 @@ int main(void)
     printf("Welcome to my Command-Line Calculator (CLC)\nDeveloper: Isabel Jacobs\nVersion: 1\nDate: October 21, 2021\n------------------------------------------\n");
 
     // Varibale initialization  
-    char option, operation, result; 
-    int num1, num2; 
+    char option, operation; 
+    int num1, num2, result; 
 
     // User selection with messgae 
     printf("\nSelect one of the following items:\n");
