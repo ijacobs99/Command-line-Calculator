@@ -7,11 +7,11 @@ int main(void)
     printf("\n");
     printf("Welcome to my Command-Line Calculator (CLC)\nDeveloper: Isabel Jacobs\nVersion: 1\nDate: October 21, 2021\n------------------------------------------\n");
 
-    // Define 
+    // Varibale initialization  
     char option, operation, result; 
     int num1, num2; 
 
-    // User selection 
+    // User selection with messgae 
     printf("\nSelect one of the following items:\n");
     printf("B) - Binary Mathematical Operations, such as addition and subtraction.\n");
     printf("U) - Unary Mathematical Operations, such as square root, and log.\n");
@@ -20,52 +20,59 @@ int main(void)
     printf("E) - Exit\n");
     printf("\n");
     scanf("%c", &option);
-
-    // If user selects option (B) | User input; 2 numbers and operation (+,-,*,/)
-    if (option == 'B') {
+    
+    while (option == 'B' || option == 'U' || option == 'A' || option == 'V' || option == 'E')
+    {    
+        // If user selects option (B) | User input; 2 numbers and operation (+,-,*,/)
+        if (option == 'B') {
+            printf("Please enter the first number: "); 
+            scanf("%d", &num1); 
+            printf("Please enter your operation ( + , - , * , / ): ");
+            scanf("%s", &operation);
+            printf("Please enter the second number: "); 
+            scanf("%d", &num2);
+                // if addition, sum will be printed 
+                if (operation == '+') {
+                    result = num1 + num2;
+                    printf("The result is: %d\n", result);
+                }
+                // subtraction, difference will be printed 
+                else if (operation == '-') {
+                    result = num1 - num2;
+                    printf("The result is: %d\n", result);
+                }
+                // multiplication, product wil be printed 
+                else if (operation == '*') {
+                    result = num1 * num2;
+                    printf("The result is: %d\n", result);
+                }
+                // division, quotient will be printed 
+                else if (operation == '/') {
+                    result = num1 / num2;
+                    printf("The result is: %d\n", result);
+                }
+        }
+        // if user selections option (U)
+        else if (option == 'U') {
+            printf("Sorry, at this time I don't have enough knowledge to serve you in this category.\n");
+        } 
+        // if user selections option (A)
+        else if (option == 'A') {
+            printf("Sorry, at this time I don't have enough knowledge to serve you in this category.\n");
+        } 
+        // if user selections option (V)
+        else if (option == 'V') {
+            printf("Sorry, at this time I don't have enough knowledge to serve you in this category.\n");
+        } 
+        // if user selections option (E)
+        else if (option =='E') {
+            printf("Thanks for using my Simple Calculator. Hope to see you again soon. Goodbye!\n");
+            break;
+        }
+        // User Selection
         printf("\n");
-        printf("Please enter the first number: "); 
-        scanf("%d", &num1); 
-        printf("Please enter your operation ( + , - , * , / )\n");
-        scanf("%s", &operation);
-        printf("Please enter the second number: "); 
-        scanf("%d", &num2);
-            // if addition, sum will be printed 
-            if (operation == '+') {
-                result = num1 + num2;
-                printf("Your result is: %d\n", result);
-            }
-            // subtraction, difference will be printed 
-            else if (operation == '-') {
-                result = num1 - num2;
-                printf("Your result is: %d\n", result);
-            }
-            // multiplication, product wil be printed 
-            else if (operation == '*') {
-                result = num1 * num2;
-                printf("Your result is: %d\n", result);
-            }
-            // division, quotient will be printed 
-            else if (operation == '/') {
-                result = num1 / num2;
-                printf("Your result is: %d\n", result);
-            }
-    }
-    // if user selections option (U)
-    else if (option == 'U') {
-        printf("\nSorry, at this time I don't have enough knowledge to serve you in this category.\n");
-    } 
-    // if user selections option (A)
-    else if (option == 'A') {
-        printf("\nSorry, at this time I don't have enough knowledge to serve you in this category.\n");
-    } 
-    // if user selections option (V)
-    else if (option == 'V') {
-        printf("\nSorry, at this time I don't have enough knowledge to serve you in this category.\n");
-    } 
-    // if user selections option (E)
-    else if (option =='E') {
-        printf("\nThanks for using my Simple Calculator. Hope to see you again soon. Goodbye!\n");
+        printf("Please select your option (B, U, A, V, E)\n");
+        scanf(" %c", &option);
     }
 
     return 0;
