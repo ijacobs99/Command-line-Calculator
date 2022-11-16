@@ -107,6 +107,12 @@ void variableDeclaration(option) {
 
 }
 
+// Declaring End function
+void end(option) {
+    return printf("Thanks for using my Simple Calculator. Hope to see you again soon. Goodbye!\n");
+}
+
+
 int main(void)
 {
     // Welcome message | Dislays the string inside quotations
@@ -147,7 +153,6 @@ int main(void)
         } 
         // if user selections option (E)
         else if (option =='E') {
-            printf("Thanks for using my Simple Calculator. Hope to see you again soon. Goodbye!\n");
             break;
         }
         // User Selection
