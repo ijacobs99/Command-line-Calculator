@@ -1,5 +1,65 @@
-
 #include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+// Declaring Binary function 
+
+    void binary() {
+
+        char operation; 
+        int num1, num2, result; 
+
+        printf("Please enter the first number: "); 
+        scanf("%d", &num1); 
+        printf("Please enter an operator ( + , - , * , / ): ");
+        scanf("%s", &operation);
+        printf("Please enter the second number: "); 
+        scanf("%d", &num2);
+
+        switch (operation)
+        {
+        case '+': // addition case
+            result = num1 + num2;
+            printf("The result is: %d\n", result);
+            break;
+        case '-': // subtraction case 
+            result = num1 - num2;
+            printf("The result is: %d\n", result);
+            break;
+        case '*': // multiplication case
+            result = num1 * num2;
+            printf("The result is: %d\n", result);
+            break;
+        case '/': // division case 
+            result = num1 / num2;
+            printf("The result is: %d\n", result);
+            break;
+        case '%': // remainder case 
+            result = num1 % num2;
+            printf("The result is: %d\n", result);
+            break;
+        case 'P': // power case 
+            result = pow(num1, num2);
+            printf("The result is: %d\n", result);
+            break;
+        case 'X': // maximum case 
+            if (num1 < num2)
+            print("%d is greater than %d\n", num2, num1);
+            break;
+        case 'I': // minimum case
+            if (num1 > num2)
+            print("%d is less than %d\n", num1, num2);
+            break;
+        default:
+            break;
+        }
+    }
+
+// Declaring Unary function 
+
+// Declaring Advances function 
+
+// Dec;aring Variables function 
 
 int main(void)
 {
@@ -25,32 +85,7 @@ int main(void)
     {    
         // If user selects option (B) | User input; 2 numbers and operation (+,-,*,/)
         if (option == 'B') {
-            printf("Please enter the first number: "); 
-            scanf("%d", &num1); 
-            printf("Please enter your operation ( + , - , * , / ): ");
-            scanf("%s", &operation);
-            printf("Please enter the second number: "); 
-            scanf("%d", &num2);
-                // if addition, sum will be printed 
-                if (operation == '+') {
-                    result = num1 + num2;
-                    printf("The result is: %d\n", result);
-                }
-                // subtraction, difference will be printed 
-                else if (operation == '-') {
-                    result = num1 - num2;
-                    printf("The result is: %d\n", result);
-                }
-                // multiplication, product wil be printed 
-                else if (operation == '*') {
-                    result = num1 * num2;
-                    printf("The result is: %d\n", result);
-                }
-                // division, quotient will be printed 
-                else if (operation == '/') {
-                    result = num1 / num2;
-                    printf("The result is: %d\n", result);
-                }
+            (binary());
         }
         // if user selections option (U)
         else if (option == 'U') {
