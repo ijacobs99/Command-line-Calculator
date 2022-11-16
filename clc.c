@@ -67,23 +67,23 @@ void unary(char option) {
 
     switch (operation)
     {
-    case 'S':
+    case 'S': //square root case
         result = sqrt(num1);
         printf("The result is: %f\n", result);
         break;
-    case 'L':
+    case 'L': // log case
         result = log(num1);
         printf("The result is: %f\n", result);
         break;
-    case 'E':
+    case 'E': // exponentiation case
         result = exp(num1);
         printf("The result is: %f\n", result);
         break;
-    case 'C':
+    case 'C': // ceiling case
         result = ceil(num1);
         printf("The result is: %f\n", result);
         break;
-    case 'F':
+    case 'F': // floor case 
         result = floor(num1);
         printf("The result is: %f\n", result);
         break;
@@ -95,7 +95,17 @@ void unary(char option) {
 
 // Declaring Advances function 
 
-// Declaring Variables function 
+// Declaring Variables function
+void variableDeclaration(option) {
+    char var;
+    float num1, result;
+
+    printf("Please enter a variable (a -e): \n");
+    scanf("%s", &var);
+    printf("Please enter a number: \n");
+    scanf("%f", &num1);
+
+}
 
 int main(void)
 {
@@ -125,7 +135,7 @@ int main(void)
         }
         // if user selections option (U)
         else if (option == 'U') {
-            printf("Sorry, at this time I don't have enough knowledge to serve you in this category.\n");
+            (unary(option));
         } 
         // if user selections option (A)
         else if (option == 'A') {
@@ -133,7 +143,7 @@ int main(void)
         } 
         // if user selections option (V)
         else if (option == 'V') {
-            printf("Sorry, at this time I don't have enough knowledge to serve you in this category.\n");
+            (variableDeclaration(option));
         } 
         // if user selections option (E)
         else if (option =='E') {
