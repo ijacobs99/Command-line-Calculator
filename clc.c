@@ -3,15 +3,14 @@
 #include <stdlib.h>
 
 // Declaring Binary function 
-
-    void binary(char option) {
+    void binary(option) {
 
         char operation; 
         float num1, num2, result; 
 
         printf("Please enter the first number: "); 
         scanf("%f", &num1); 
-        printf("Please enter an operator ( + , - , * , / ): ");
+        printf("Please enter an operator ( + , - , * , /, P, X, I): ");
         scanf("%s", &operation);
         printf("Please enter the second number: "); 
         scanf("%f", &num2);
@@ -20,35 +19,39 @@
         {
         case '+': // addition case
             result = num1 + num2;
-            printf("The result is: %f\n", result);
+            printf("The result is: %.2f\n", result);
             break;
         case '-': // subtraction case 
             result = num1 - num2;
-            printf("The result is: %f\n", result);
+            printf("The result is: %.2f\n", result);
             break;
         case '*': // multiplication case
             result = num1 * num2;
-            printf("The result is: %f\n", result);
+            printf("The result is: %.2f\n", result);
             break;
         case '/': // division case 
+            if (num2 == 0) {
+                printf("Please enter a non-zero number: \n");
+                scanf("%f", &num2);
+            }
             result = num1 / num2;
-            printf("The result is: %f\n", result);
+            printf("The result is: %.2f\n", result);
             break;
         case '%': // remainder case 
             result = remainder(num1,num2);
-            printf("The result is: %f\n", result);
+            printf("The result is: %.2f\n", result);
             break;
         case 'P': // power case 
             result = pow(num1, num2);
-            printf("The result is: %f\n", result);
+            printf("The result is: %.2f\n", result);
             break;
         case 'X': // maximum case 
-            if (num1 < num2)
-            print("%f is greater than %f\n", num2, num1);
+            result = fmax(num1, num2);
+            printf("The result is %.2f\n", result);
             break;
         case 'I': // minimum case
-            if (num1 > num2)
-            print("%f is less than %f\n", num1, num2);
+            result = fmin(num1, num2);
+            printf("The result is %.2f\n", result);
             break;
         default:
             break;
@@ -56,7 +59,7 @@
     }
 
 // Declaring Unary function 
-void unary(char option) {
+void unary(option) {
     char operation; 
     float num1, result; 
 
@@ -69,23 +72,23 @@ void unary(char option) {
     {
     case 'S': //square root case
         result = sqrt(num1);
-        printf("The result is: %f\n", result);
+        printf("The result is: %.2f\n", result);
         break;
     case 'L': // log case
         result = log(num1);
-        printf("The result is: %f\n", result);
+        printf("The result is: %.2f\n", result);
         break;
     case 'E': // exponentiation case
         result = exp(num1);
-        printf("The result is: %f\n", result);
+        printf("The result is: %.2f\n", result);
         break;
     case 'C': // ceiling case
         result = ceil(num1);
-        printf("The result is: %f\n", result);
+        printf("The result is: %.2f\n", result);
         break;
     case 'F': // floor case 
         result = floor(num1);
-        printf("The result is: %f\n", result);
+        printf("The result is: %.2f\n", result);
         break;
     default:
         break;
@@ -93,35 +96,69 @@ void unary(char option) {
 
 }
 
-// Declaring Advances function 
-
 // Declaring Variables function
 void variableDeclaration(option) {
-    char var;
-    float num1, result;
+    char varName;
+    float num, a = 0, b = 0, c = 0, d = 0, e = 0;
 
-    printf("Please enter a variable (a -e): \n");
-    scanf("%s", &var);
-    printf("Please enter a number: \n");
-    scanf("%f", &num1);
+    printf("Please enter the name of the variable ( A single character between 'a' to 'e' ): ");
+    scanf("%s", &varName);
+    printf("Please enter a value to assign to the variable: ");
+    scanf("%f", &num);
 
+    if (varName == 'a') {
+        a = num;
+        printf("Variable a is set to: %.2f\n", a);
+    }
+    else if (varName == 'b') {
+        b = num;
+        printf("Variable b is set to: %.2f\n", b);
+    }
+    else if (varName == 'c') {
+        c = num;
+        printf("Variable c is set to: %.2f\n", c);
+    }
+    else if (varName == 'd') {
+        d = num;
+        printf("Variable d is set to: %.2f\n", d);
+    }
+    else if (varName == 'e') {
+        e = num;
+        printf("Variable e is set to: %.2f\n", e);
+    }
 }
 
 // Declaring End function
 void end(option) {
-    return printf("Thanks for using my Simple Calculator. Hope to see you again soon. Goodbye!\n");
+    printf("Thanks for using my Simple Calculator. Hope to see you again soon. Goodbye!\n");
 }
 
+// Declaring Advances function
+void advances(option) {
+    char userSelection;
+    printf("Please choose B, U, or E: \n");
+    scanf("%s", &userSelection);
+
+    if (userSelection == 'B') {
+        (binary(option));
+    }
+    else if (userSelection == 'U') {
+        (unary(option));
+    }
+    else if (userSelection == 'E') {
+        (end(option));
+    }
+
+}
 
 int main(void)
 {
     // Welcome message | Dislays the string inside quotations
     printf("\n");
-    printf("Welcome to my Command-Line Calculator (CLC)\nDeveloper: Isabel Jacobs\nVersion: 1\nDate: October 21, 2021\n------------------------------------------\n");
+    printf("Welcome to my Command-Line Calculator (CLC)\nDeveloper: Isabel Jacobs\nVersion: 2\nDate: November 18, 2022\n------------------------------------------\n");
 
     // Varibale initialization  
-    char option, operation; 
-    int num1, num2, result; 
+    char option; 
 
     // User selection with messgae 
     printf("\nSelect one of the following items:\n");
@@ -145,14 +182,15 @@ int main(void)
         } 
         // if user selections option (A)
         else if (option == 'A') {
-            printf("Sorry, at this time I don't have enough knowledge to serve you in this category.\n");
+            (advances(option));
         } 
         // if user selections option (V)
         else if (option == 'V') {
-            (variableDeclaration(option));
+            (advances(option));
         } 
         // if user selections option (E)
         else if (option =='E') {
+            (end(option));
             break;
         }
         // User Selection
