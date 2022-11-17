@@ -6,97 +6,135 @@
     void binary(option) {
 
         char operation; 
-        float num1, num2, result; 
+        float num1, num2, result, catch = 1; 
 
         printf("Please enter the first number: "); 
-        scanf("%f", &num1); 
-        printf("Please enter an operator ( + , - , * , /, P, X, I): ");
+        while (scanf("%f", &num1) == 0) {
+            printf("Invalid input. Please enter floating point number: ");
+            scanf("%*s");
+        }
+        printf("Please enter an operator (+ , - , * , /, %%, P, X, I): ");
         scanf("%s", &operation);
-        printf("Please enter the second number: "); 
-        scanf("%f", &num2);
 
-        switch (operation)
-        {
-        case '+': // addition case
-            result = num1 + num2;
-            printf("The result is: %.2f\n", result);
-            break;
-        case '-': // subtraction case 
-            result = num1 - num2;
-            printf("The result is: %.2f\n", result);
-            break;
-        case '*': // multiplication case
-            result = num1 * num2;
-            printf("The result is: %.2f\n", result);
-            break;
-        case '/': // division case 
-            if (num2 == 0) {
-                printf("Please enter a non-zero number: \n");
-                scanf("%f", &num2);
+        printf("Please enter the second number: "); 
+        while (scanf("%f", &num2) == 0) {
+            printf("Invalid input. Please enter floating point number: ");
+            scanf("%*s");
+        }
+
+        while (catch == 1) {
+            switch (operation)
+            {
+            case '+': // addition case
+                result = num1 + num2;
+                printf("The result is: %.2f\n", result);
+                catch = 0;
+                break;
+            case '-': // subtraction case 
+                result = num1 - num2;
+                printf("The result is: %.2f\n", result);
+                catch = 0;
+                break;
+            case '*': // multiplication case
+                result = num1 * num2;
+                printf("The result is: %.2f\n", result);
+                catch = 0;
+                break;
+            case '/': // division case 
+                if (num2 == 0) {
+                    printf("Please enter a non-zero number: \n");
+                    scanf("%f", &num2);
+                }
+                result = num1 / num2;
+                printf("The result is: %.2f\n", result);
+                catch = 0;
+                break;
+            case '%': // remainder case 
+                result = remainder(num1,num2);
+                printf("The result is: %.2f\n", result);
+                catch = 0;
+                break;
+            case 'P': // power case 
+                result = pow(num1, num2);
+                printf("The result is: %.2f\n", result);
+                catch = 0;
+                break;
+            case 'X': // maximum case 
+                result = fmax(num1, num2);
+                printf("The result is %.2f\n", result);
+                catch = 0;
+                break;
+            case 'I': // minimum case
+                result = fmin(num1, num2);
+                printf("The result is %.2f\n", result);
+                catch = 0;
+                break;
+            default:
+                printf("Please enter a valid operator (+ , - , * , /, %%, P, X, I): ");
+                scanf(" %c", &operation);
+                catch = 1; 
+                break;
             }
-            result = num1 / num2;
-            printf("The result is: %.2f\n", result);
-            break;
-        case '%': // remainder case 
-            result = remainder(num1,num2);
-            printf("The result is: %.2f\n", result);
-            break;
-        case 'P': // power case 
-            result = pow(num1, num2);
-            printf("The result is: %.2f\n", result);
-            break;
-        case 'X': // maximum case 
-            result = fmax(num1, num2);
-            printf("The result is %.2f\n", result);
-            break;
-        case 'I': // minimum case
-            result = fmin(num1, num2);
-            printf("The result is %.2f\n", result);
-            break;
-        default:
-            break;
         }
     }
 
 // Declaring Unary function 
 void unary(option) {
     char operation; 
-    float num1, result; 
+    float num1, result, catch = 1; 
 
     printf("Please enter a number: "); 
-    scanf("%f", &num1); 
-    printf("Please enter an operator ( S, L, E, C, F): ");
+    while (scanf("%f", &num1) == 0) {
+        printf("Invalid input. Please enter floating point number: ");
+        scanf("%*s");
+    } 
+    printf("Please enter an operator (S, L, E, C, F): ");
     scanf("%s", &operation);
 
-    switch (operation)
-    {
-    case 'S': //square root case
-        result = sqrt(num1);
-        printf("The result is: %.2f\n", result);
-        break;
-    case 'L': // log case
-        result = log(num1);
-        printf("The result is: %.2f\n", result);
-        break;
-    case 'E': // exponentiation case
-        result = exp(num1);
-        printf("The result is: %.2f\n", result);
-        break;
-    case 'C': // ceiling case
-        result = ceil(num1);
-        printf("The result is: %.2f\n", result);
-        break;
-    case 'F': // floor case 
-        result = floor(num1);
-        printf("The result is: %.2f\n", result);
-        break;
-    default:
-        break;
+    while (catch == 1) {
+        switch (operation)
+        {
+        case 'S': //square root case
+            if (num1 < 0) {
+                printf("Please enter a positive number: ");
+                scanf("%f", &num1);
+            }
+            result = sqrt(num1);
+            printf("The result is: %.2f\n", result);
+            catch = 0;
+            break;
+        case 'L': // log case
+            result = log(num1);
+            printf("The result is: %.2f\n", result);
+            catch = 0;
+            break;
+        case 'E': // exponentiation case
+            result = exp(num1);
+            printf("The result is: %.2f\n", result);
+            catch = 0;
+            break;
+        case 'C': // ceiling case
+            result = ceil(num1);
+            printf("The result is: %.2f\n", result);
+            catch = 0;
+            break;
+        case 'F': // floor case 
+            result = floor(num1);
+            printf("The result is: %.2f\n", result);
+            catch = 0;
+            break;
+        default:
+            printf("Please enter a valid operator (S, L, E, C, F): ");
+            scanf(" %c", &operation);
+            catch = 1;
+            break;
+        }
     }
 
 }
 
 // Declaring Variables function
+/** 
 void variableDeclaration(option) {
     char varName;
     float num, a = 0, b = 0, c = 0, d = 0, e = 0;
@@ -127,6 +165,7 @@ void variableDeclaration(option) {
         printf("Variable e is set to: %.2f\n", e);
     }
 }
+*/
 
 // Declaring End function
 void end(option) {
@@ -169,10 +208,9 @@ int main(void)
     printf("E) - Exit\n");
     printf("\n");
     scanf("%c", &option);
-    
-    while (option == 'B' || option == 'U' || option == 'A' || option == 'V' || option == 'E')
-    {    
-        // If user selects option (B) | User input; 2 numbers and operation (+,-,*,/)
+
+    while (option == 'B' || option == 'U' || option == 'A' || option == 'V' || option == 'E') {    
+        // If user selects option (B) 
         if (option == 'B') {
             (binary(option));
         }
@@ -186,16 +224,57 @@ int main(void)
         } 
         // if user selections option (V)
         else if (option == 'V') {
-            (advances(option));
+            char varName;
+            float num, a = 0, b = 0, c = 0, d = 0, e = 0, catch = 1;
+
+            printf("Please enter the name of the variable (A single character between 'a' to 'e'): ");
+            scanf("%s", &varName);
+            printf("Please enter a value to assign to the variable: ");
+            scanf("%f", &num);
+
+            while (catch == 1) {
+                switch (varName) {
+                    case 'a':
+                        a = num;
+                        printf("Variable a is set to: %.2f\n", a);
+                        catch = 0;
+                        break;
+                    case 'b':
+                        b = num;
+                        printf("Variable b is set to: %.2f\n", b);
+                        catch = 0;
+                        break;
+                    case 'c':
+                        c = num;
+                        printf("Variable c is set to: %.2f\n", c);
+                        catch = 0;
+                        break;
+                    case 'd':
+                        d = num;
+                        printf("Variable d is set to: %.2f\n", d);
+                        catch = 0;
+                        break;
+                    case 'e':
+                        e = num;
+                        printf("Variable e is set to: %.2f\n", e);
+                        catch = 0;
+                        break;
+                    default:
+                        printf("Invalid variable name. Please choose a characater between 'a' and 'e': ");
+                        scanf(" %c", &varName);
+                        catch = 1;
+                }
+
+            }
         } 
         // if user selections option (E)
         else if (option =='E') {
             (end(option));
             break;
         }
-        // User Selection
+        // User Reselection
         printf("\n");
-        printf("Please select your option (B, U, A, V, E)\n");
+        printf("Please select your option (B, U, A, V, E): ");
         scanf(" %c", &option);
     }
 
