@@ -1,6 +1,31 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+//Declaring Reselction function 
+char reselection(option) {
+    int catch = 1; 
+    char userSelection;
+    printf("\n");
+    printf("Please select your option (B, U, A, V, E): ");
+    scanf(" %c", &userSelection);
+
+    while (catch == 1) {
+        userSelection = toupper(userSelection);
+
+        if (userSelection == 'B' || userSelection == 'U' || userSelection == 'A' || userSelection == 'V' || userSelection == 'E') {
+            catch = 0;
+        }
+        else {
+            printf("Please enter a valid option (B, U, V, A, E): ");
+            scanf(" %c", &userSelection);
+            catch = 1;
+        }
+    }
+
+    return(userSelection);
+}
 
 // Declaring Binary function 
     float binary(option) {
@@ -148,8 +173,6 @@ float variableDeclaration(option) {
                     return b;
                 case 'c':
                     c = num;
-
-
                     printf("Variable c is set to: %.2f\n", c);
                     catch = 0;
                     return c;
@@ -301,33 +324,12 @@ float advancedUnary(option) {
         }
 
         else if (choice == 'N') {
-            result = (binary(option));
+            result = (unary(option));
             return result; 
 
         }
 
     return result;
-}
-
-// Declaring Advances function
-void advances(option) {
-    char userSelection;
-    float result;
-    printf("Please choose B, U, or E: \n");
-    scanf("%s", &userSelection);
-
-    if (userSelection == 'B') {
-        result = (advancedBinary(option));
-        printf("The result is: %.2f\n", result);
-    }
-    else if (userSelection == 'U') {
-        result = (advancedUnary(option));
-        printf("The result is: %.2f\n", result);
-    }
-    else if (userSelection == 'E') {
-        (end(option));
-    }
-
 }
 
 //main function 
@@ -340,6 +342,7 @@ int main(void)
     // Varibale initialization  
     char option;
     float result;
+    int catch = 1;
 
     // User selection with messgae 
     printf("\nSelect one of the following items:\n");
@@ -351,35 +354,55 @@ int main(void)
     printf("\n");
     scanf("%c", &option);
 
-    while (option == 'B' || option == 'U' || option == 'A' || option == 'V' || option == 'E') {    
-        // If user selects option (B) 
-        if (option == 'B') {
-            result = (binary(option));
-            printf("The result is: %.2f\n", result);
+    while (catch == 1) {
+        switch(option) {
+            case 'B': // Binary case
+                result = (binary(option));
+                printf("The result is: %.2f\n", result);
+                catch = 1;
+                break;
+            case 'U': // Unary case
+                result = (unary(option));
+                printf("The result is: %.2f\n", result);
+                catch = 1;
+                break;
+            case 'V': // Variable case
+                (variableDeclaration(option));
+                catch = 1;
+                break;
+            case 'A': // Advance case
+                printf("Please choose B, U, or E: \n");
+                scanf("%s", &option);
+
+                if (option == 'B') { // if advanced binary 
+                    result = (advancedBinary(option));
+                    printf("The result is: %.2f\n", result);
+                    catch = 1;
+                }
+                else if (option == 'U') { // if advanced unary 
+                    result = (advancedUnary(option));
+                    printf("The result is: %.2f\n", result);
+                    catch = 1;
+                }
+                else if (option == 'E') { // if exit 
+                    catch = 0;
+                }
+                break;
+            case 'E': // Exit case
+                catch = 0;
+                break;
         }
-        // if user selections option (U)
-        else if (option == 'U') {
-            result = (unary(option));
-            printf("The result is: %.2f\n", result);
-        } 
-        // if user selections option (V)
-        else if (option == 'V') {
-            (variableDeclaration(option));
-        }
-        // if user selections option (A)
-        else if (option == 'A') {
-            (advances(option));
-        } 
-        // if user selections option (E)
-        else if (option =='E') {
+
+        // call Exit function 
+        if (option == 'E') { 
             (end(option));
-            break;
         }
-        // User Reselection
-        printf("\n");
-        printf("Please select your option (B, U, A, V, E): ");
-        scanf(" %c", &option);
+        // call Reselection function 
+        else {
+            option = reselection(option);
+        }
     }
+
 
     return 0;
 }
