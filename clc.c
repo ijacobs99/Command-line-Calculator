@@ -3,28 +3,26 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-//Declaring Reselction function 
-char reselection(option) {
+//Declaring Selction function 
+char selection(option) {
     int catch = 1; 
-    char userSelection;
-    printf("\n");
-    printf("Please select your option (B, U, A, V, E): ");
-    scanf(" %c", &userSelection);
-
     while (catch == 1) {
-        userSelection = toupper(userSelection);
+        //capitalize input for userSelection
+        option = toupper(option);
 
-        if (userSelection == 'B' || userSelection == 'U' || userSelection == 'A' || userSelection == 'V' || userSelection == 'E') {
+        if (option == 'B' || option == 'U' || option == 'A' || option == 'V' || option == 'E') {
             catch = 0;
         }
         else {
+            // invalid input case | ask user to select valid input
+            char option;
             printf("Please enter a valid option (B, U, V, A, E): ");
-            scanf(" %c", &userSelection);
+            scanf("%c", &option);
             catch = 1;
         }
     }
 
-    return(userSelection);
+    return(option);
 }
 
 // Declaring Binary function 
@@ -208,6 +206,7 @@ float advancedBinary(option) {
 
     printf("Would you like to enter a variable or a number (V or N): ");
     scanf("%s", &choice);
+    choice = toupper(choice);
 
     if (choice == 'V') {
         variable1 = (variableDeclaration(option));
@@ -279,7 +278,7 @@ float advancedUnary(option) {
 
     printf("Would you like to enter a variable or a number (V or N): ");
     scanf("%s", &choice);
-    
+    choice = toupper(choice);
 
         if (choice == 'V') {
             variable = (variableDeclaration(option));
@@ -335,9 +334,9 @@ float advancedUnary(option) {
 //main function 
 int main(void)
 {
-    // Welcome message | Dislays the string inside quotations
+    // Welcome message 
     printf("\n");
-    printf("Welcome to my Command-Line Calculator (CLC)\nDeveloper: Isabel Jacobs\nVersion: 2\nDate: November 18, 2022\n------------------------------------------\n");
+    printf("Welcome to my Command-Line Calculator (CLC)\nDeveloper: Isabel Jacobs\nVersion: 2\nDate: November 30, 2022\n------------------------------------------\n");
 
     // Varibale initialization  
     char option;
@@ -351,8 +350,8 @@ int main(void)
     printf("A) - Advances Mathematical Operations, using variables, arrays.\n");
     printf("V) - Define variables and assign them values.\n");
     printf("E) - Exit\n");
-    printf("\n");
     scanf("%c", &option);
+    option = selection(option);
 
     while (catch == 1) {
         switch(option) {
@@ -373,6 +372,7 @@ int main(void)
             case 'A': // Advance case
                 printf("Please choose B, U, or E: \n");
                 scanf("%s", &option);
+                option = toupper(option);
 
                 if (option == 'B') { // if advanced binary 
                     result = (advancedBinary(option));
@@ -397,9 +397,12 @@ int main(void)
         if (option == 'E') { 
             (end(option));
         }
-        // call Reselection function 
+        // call Selection function 
         else {
-            option = reselection(option);
+        printf("\n");
+        printf("Please select your option (B, U, A, V, E): ");
+        scanf(" %c", &option);
+        option = selection(option);
         }
     }
 
